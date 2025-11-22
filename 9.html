@@ -1,0 +1,113 @@
+9.	Program Statement:
+
+Write an XML file which will display the Faculty
+ Information and also  XSLT Program to display XML
+ Data in HTML Document which includes:
+1.	Name of the Faculty
+2.	First Sem Subject
+3.	Second Sem Subject
+4.	Third Sem Subject
+
+Procedure:
+1.	Install XML SPY Editor where XML programs 
+will be executed.
+2.	Create faculty.xml file
+3.	Create faculty.dtd file
+4.	Create faculty.xsl file where xml data will
+ be displayed in html form.
+5.	Open the browserin XML SPY Editor  and xml
+ data will be displayed in html form.
+
+facultys.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="facultys.xsl"
+ type="text/xsl"?>
+<!DOCTYPE facultys SYSTEM "faculty.dtd">
+<facultys>
+<faculty>
+<Name>Dr. N.Mallikharjuna Rao </Name>
+<firstsem> RDBMS</firstsem>
+<secondsem>SE</secondsem>
+<thirdsem>IOT</thirdsem>
+</faculty>
+
+<faculty>
+<Name>Dr.C. Madana Kumar Reddy </Name>
+<firstsem> CO</firstsem>
+<secondsem>MIS</secondsem>
+<thirdsem>STM</thirdsem>
+</faculty>
+
+<faculty>
+<Name>P.Kavitha</Name>
+<firstsem> MFCS </firstsem>
+<secondsem>SE</secondsem>
+<thirdsem>WT</thirdsem>
+</faculty>
+
+<faculty>
+<Name> B. Hari Krishna</Name>
+<firstsem>PS</firstsem>
+<secondsem>PP</secondsem>
+<thirdsem>DEVOPS</thirdsem>
+</faculty>
+
+<faculty>
+<Name> S. Mastan</Name>
+<firstsem> DS</firstsem>
+<secondsem>DAA</secondsem>
+<thirdsem>ML</thirdsem>
+</faculty>
+
+<faculty>
+<Name> M. Hari Babu</Name>
+<firstsem>TC  </firstsem>
+<secondsem>CN</secondsem>
+<thirdsem>UML</thirdsem>
+</faculty>
+</facultys>
+
+faculty.dtd
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT facultys (faculty+)>
+<!ELEMENT faculty (Name,firstsem, secondsem,
+ thirdsem)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT firstsem (#PCDATA)>
+<!ELEMENT secondsem (#PCDATA)>
+<!ELEMENT thirdsem (#PCDATA)>
+
+facultys.xsl
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" 
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<xsl:template match="/">
+<html><head><title> faculty information</title>
+</head>
+<body>
+<h1 style="background-color:grey;color:orange;
+font-size:20pt;
+text-align:center"> Faculty Information</h1>
+<table align="center" border="2">
+<tr><th>Name</th>
+<th>firstsem</th>
+<th>secondsem</th>
+<th>thirdsem</th>
+</tr>
+<xsl:for-each select="facultys/faculty">
+<tr><td><xsl:value-of select="Name"/></td>
+<td><xsl:value-of select="firstsem"/></td>
+<td><xsl:value-of select="secondsem"/></td>
+<td><xsl:value-of select="thirdsem"/></td>
+</tr>
+</xsl:for-each>
+</table>
+</body>
+</html>
+</xsl:template>
+</xsl:stylesheet>
+
+
